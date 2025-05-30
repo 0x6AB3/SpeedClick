@@ -17,6 +17,6 @@ class Keyboard:
         # Non-character keys (e.g. shift, ctrl) are ignored to avoid exceptions
         try:
             self.recent_key = key.char
-            print(f"Key pressed: {key.char}")
+            print(f"\nKey pressed: {key.char}")
         except AttributeError:
             pass
