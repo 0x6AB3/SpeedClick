@@ -1,10 +1,10 @@
+import sys
 import threading
-
-from Keyboard import Keyboard
-from Mouse import Mouse
-from ClickSequence import ClickSequence
 import tkinter as tk
+from Mouse import Mouse
+from Keyboard import Keyboard
 from tkinter import messagebox
+from ClickSequence import ClickSequence
 
 
 class Controller:
@@ -45,5 +45,5 @@ class Controller:
                 tk.messagebox.showinfo("Saved clicks", f"Sequence is now empty", parent=self.top)
 
             elif self.keyboard.recent_key == 'q':
-                pass
+                sys.exit(0)
             self.keyboard.recent_key = None

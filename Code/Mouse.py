@@ -1,6 +1,6 @@
 import threading
-from Code.Click import Click
 from pynput import mouse
+from Code.Click import Click
 
 # GPT-generated comments
 class Mouse:
