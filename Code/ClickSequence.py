@@ -1,3 +1,5 @@
+import os
+
 class ClickSequence:
     def __init__(self):
         self.clicks = []
@@ -15,12 +17,16 @@ class ClickSequence:
     def clear(self):
         self.clicks = []
 
-    def save(self):
+    def save(self, profile_number):
         positions = [f"{x},{y}" for x, y in self.clicks]
         to_write = " ".join(positions)
         to_write += "\n"
 
-        with open("SavedSequences.txt", "a") as f:
+        if to_write == "\n":
+            return
+
+        os.makedirs("Profiles", exist_ok=True)
+        with open(f"Profiles/sequence_{profile_number}.txt", "a") as f:
             f.write(to_write)
 
     def load(self):

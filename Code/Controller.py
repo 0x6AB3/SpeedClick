@@ -27,27 +27,32 @@ class Controller:
         print("Controller ready.")
 
     def check_input(self):
+        profile_numbers = [f"{i}" for i in range(0, 10)]
+
         while True:
-            if self.keyboard.recent_key == 's':
+            key = self.keyboard.recent_key
+            if key == 's':
                 self.save_clicks = not self.save_clicks
                 print(f"Click saving: {self.save_clicks}")
 
-            elif self.keyboard.recent_key == 'e':
+            elif key == 'e':
                 self.save_clicks = False
                 self.saved_clicks.execute()
 
-            elif self.keyboard.recent_key == 'v':
+            elif key == 'v':
+                self.save_clicks = False
                 clicks = [f"{x},{y}" for (x, y) in self.saved_clicks]
                 tk.messagebox.showinfo("Current selection", f"{clicks}", parent=self.top)
 
-            elif self.keyboard.recent_key == 'd':
+            elif key == 'd':
+                self.save_clicks = False
                 self.saved_clicks.clear()
                 tk.messagebox.showinfo("Saved clicks", f"Sequence is now empty", parent=self.top)
 
-            elif self.keyboard.recent_key == 'c':
+            elif key in profile_numbers:
                 self.save_clicks = False
-                self.saved_clicks.save()
+                self.saved_clicks.save(key)
 
-            elif self.keyboard.recent_key == 'q':
+            elif key == 'q':
                 sys.exit(0)
             self.keyboard.recent_key = None
