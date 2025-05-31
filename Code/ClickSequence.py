@@ -16,7 +16,12 @@ class ClickSequence:
         self.clicks = []
 
     def save(self):
-        pass
+        positions = [f"{x},{y}" for x, y in self.clicks]
+        to_write = " ".join(positions)
+        to_write += "\n"
+
+        with open("SavedSequences.txt", "a") as f:
+            f.write(to_write)
 
     def load(self):
         pass

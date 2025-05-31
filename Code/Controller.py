@@ -44,6 +44,10 @@ class Controller:
                 self.saved_clicks.clear()
                 tk.messagebox.showinfo("Saved clicks", f"Sequence is now empty", parent=self.top)
 
+            elif self.keyboard.recent_key == 'c':
+                self.save_clicks = False
+                self.saved_clicks.save()
+
             elif self.keyboard.recent_key == 'q':
                 sys.exit(0)
             self.keyboard.recent_key = None
