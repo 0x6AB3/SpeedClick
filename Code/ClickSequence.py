@@ -1,4 +1,4 @@
-import os
+import json
 from Code.Click import Click
 
 class ClickSequence:
@@ -18,24 +18,23 @@ class ClickSequence:
     def clear(self):
         self.clicks.clear()
 
-    def save(self, profile_number):
-        positions = [f"{x},{y}" for x, y in self.clicks]
-        to_write = " ".join(positions)
-        to_write += "\n"
+    def to_json(self, profile_number):
+        with open(f"Profiles/{profile_number}.json", "w") as f:
+            f.write(json.dumps([click.to_dict() for click in self.clicks], indent=4))
+        print(f"Saved current sequence to profile: {profile_number}")
 
-        if to_write == "\n":
+    def from_json(self, profile_number):
+        json_string = None
+        try:
+            with open("Profiles/{profile_number}.json", "r") as f:
+                json_string = f.read()
+        except FileNotFoundError:
+            print("Profile {profile_number} does not exist yet, saving...")
+            self.to_json(profile_number)
             return
 
-        os.makedirs("Profiles", exist_ok=True)
-        with open(f"Profiles/sequence_{profile_number}.txt", "a") as f:
-            f.write(to_write)
-
-    def load(self, profile_number):
         self.clear()
-        data = None
-        with open(f"Profiles/sequence_{profile_number}.txt", "r") as f:
-            data = f.readline()
+        data = json.loads(json_string)
+        for item in data:
+            self.append(Click.from_dict(item))
 
-        for position in data.split(" "):
-            x, y = position.split(",")
-            self.append(Click(x, y))

@@ -21,3 +21,10 @@ class Click:
 
         # Final action: clicking after the cursor reaches the location
         pyautogui.click()
+
+    def to_dict(self):
+        return {"x": self.x, "y": self.y}
+
+    @staticmethod
+    def from_dict(data):
+        return Click(data["x"], data["y"])

@@ -13,6 +13,7 @@ class Controller:
         self.keyboard = Keyboard(self)
         self.save_clicks = False
         self.saved_clicks = ClickSequence()
+        self.loaded_profile = '0'
 
         # popups box stuff
         self.root = tk.Tk()
@@ -55,13 +56,9 @@ class Controller:
 
             elif key in profile_numbers:
                 self.save_clicks = False
-                try:
-                    self.saved_clicks.load(key)
-                    print(f"Loaded profile at key: {key}")
-                except:
-                    print(f"No profile at key: {key}, saving...")
-                    self.saved_clicks.save(key)
-                    print(f"Saved profile at key: {key}")
+                self.loaded_profile = key
+                print(f"Loading profile: {key}")
+                self.saved_clicks.from_json(key)
 
             elif key == 'q':
                 sys.exit(0)
