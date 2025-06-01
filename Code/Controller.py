@@ -1,10 +1,10 @@
 import sys
 import threading
 import tkinter as tk
-from Mouse import Mouse
-from Keyboard import Keyboard
 from tkinter import messagebox
-from ClickSequence import ClickSequence
+from Code.Mouse import Mouse
+from Code.Keyboard import Keyboard
+from Code.ClickSequence import ClickSequence
 
 
 class Controller:
@@ -21,14 +21,16 @@ class Controller:
         self.top.withdraw()
         self.top.attributes("-topmost", True)
 
-        self.thread = threading.Thread(target=self.check_input())
-        self.thread.start()
-
-        print("Controller ready.")
+        #self.thread = threading.Thread(target=self.check_input)
+        #self.thread.start()
+        #print("Controller ready.")
+        self.check_input()
 
     def check_input(self):
         profile_numbers = [f"{i}" for i in range(0, 10)]
 
+        print("SpeedClick is running...")
+        print("Commands: (list them here)")
         while True:
             key = self.keyboard.recent_key
             if key == 's':
@@ -37,7 +39,9 @@ class Controller:
 
             elif key == 'e':
                 self.save_clicks = False
+                position = self.mouse.get_position()
                 self.saved_clicks.execute()
+                self.mouse.set_position(position)
 
             elif key == 'v':
                 self.save_clicks = False
@@ -51,8 +55,17 @@ class Controller:
 
             elif key in profile_numbers:
                 self.save_clicks = False
-                self.saved_clicks.save(key)
+                try:
+                    self.saved_clicks.load(key)
+                    print(f"Loaded profile at key: {key}")
+                except:
+                    print(f"No profile at key: {key}, saving...")
+                    self.saved_clicks.save(key)
+                    print(f"Saved profile at key: {key}")
 
             elif key == 'q':
                 sys.exit(0)
+
+            elif key == "n":
+                self.mouse.noise()
             self.keyboard.recent_key = None
