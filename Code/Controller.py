@@ -65,4 +65,18 @@ class Controller:
 
             elif key == "n":
                 self.mouse.noise()
+
+            elif key == "f":
+                self.saved_clicks.initial_clicks += 1
+                print(f"SpeedClick will now click {self.saved_clicks.initial_clicks} time/s first at your current mouse position before executing the click sequence")
+
+            elif key == "g":
+                self.saved_clicks.initial_clicks -= 1
+                print(f"SpeedClick will now click {self.saved_clicks.initial_clicks} time/s first at your current mouse position before executing the click sequence")
+
+            elif key == "a":
+                self.save_clicks = False
+                self.mouse.toggle_auto_click()
+                print(f"Auto click is on: {self.mouse.auto_click}")
+
             self.keyboard.recent_key = None

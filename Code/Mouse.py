@@ -19,11 +19,26 @@ class Mouse:
         self.drag_positions = []
         self.recent_click = None
         self.recent_click_time = None
+        self.auto_click = False
 
         # Start mouse listener in a separate thread to avoid blocking the main program
         self.listener = mouse.Listener(on_click=self.on_click, on_move=self.on_move)
         self.thread = threading.Thread(target=self.listener.start)
         self.thread.start()
+
+        self.auto_click_thread = None
+
+    def auto_click_thread_loop(self):
+        while self.auto_click:
+            pyautogui.click()
+
+    def toggle_auto_click(self):
+        self.auto_click = not self.auto_click
+        if self.auto_click_thread is None:
+            self.auto_click_thread = threading.Thread(target=self.auto_click_thread_loop)
+            self.auto_click_thread.start()
+        else:
+            self.auto_click_thread = None
 
     def get_position(self):
         return self.mouse.position
@@ -56,7 +71,6 @@ class Mouse:
             else:
                 self.controller.saved_clicks.append(self.recent_click)
                 print(f"Click saved at ({x},{y})")
-
 
     def on_move(self, x, y):
         if self.dragging:

@@ -1,14 +1,22 @@
 import json
+import pyautogui
 from Code.Click import Click
 
 class ClickSequence:
     def __init__(self):
         self.clicks = []
+        self.initial_clicks = 0
 
     def __iter__(self):
         return iter(self.clicks)
 
     def execute(self):
+        if self.initial_clicks < 0:
+            self.initial_clicks = 0
+
+        for i in range(self.initial_clicks):
+            pyautogui.click()
+
         for click in self.clicks:
             click.execute()
 
