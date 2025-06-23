@@ -34,7 +34,7 @@
 | `D` | **Delete Sequence** – Clears the currently saved sequence. |
 | `V` | **View Sequence** – Shows the current sequence in a popup. |
 | `0–9` | **Profile Save/Load** – Save or load the current sequence to/from one of 10 profiles. |
-| `N` | **Noise Mode** – Automatically move the mouse around within a predefined area. *(Optional feature you can implement)* |
+| `N` | **Noise Mode** – Automatically move the mouse around within a predefined area. |
 | `Q` | **Quit** – Exit the program immediately and safely. |
 
 ---
