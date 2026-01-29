@@ -1,10 +1,10 @@
 # SpeedClick
 
-**SpeedClick** is a lightweight, Python-based utility tool designed for automating mouse clicks and keyboard actions with ease. Whether you're looking to streamline repetitive tasks or simulate input for testing, SpeedClick provides a simple keyboard-driven interface to automate your workflow.
+A lightweight, Python-based utility tool designed for automating mouse clicks and keyboard actions with ease. Whether you're looking to streamline repetitive tasks or simulate input for testing, SpeedClick provides a simple keyboard-driven interface to automate your workflow.
 
 ---
 
-## 🚀 Features
+## Features
 
 - **Click & drag recording**
 - **Execution of saved sequences**
@@ -15,7 +15,7 @@
 
 ---
 
-## 🧠 How It Works
+## How It Works
 
 1. **Run** `SpeedClick(main).py` inside the `Code` directory using **Python 3.13**.  
    ➤ [Download Python 3.13.3 here](https://www.python.org/ftp/python/3.13.3/python-3.13.3-amd64.exe)
@@ -39,7 +39,7 @@
 
 ---
 
-## 📌 Notes
+## Notes
 
 - Works best on the **main monitor** — clicks on other monitors may be misaligned.
 - Selection mode **does not overwrite** — all clicks are added until cleared.
