@@ -25,7 +25,7 @@ A lightweight, Python-based utility tool designed for automating mouse clicks an
 
 ---
 
-## ⌨️ Keybinds & Modes
+## Keybinds & Modes
 
 | Key | Action |
 |-----|--------|
